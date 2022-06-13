@@ -26,11 +26,13 @@ class OneStudentRegistration extends ApiRequest
     {
         return [
             'name'=>'min:1|max:30|required',
+            'login' => 'required',
             'middle_name'=>'min:1|max:30|required',
             'last_name'=>'min:1|max:30|required',
             'password' => 'min:8|required',
             'student_cart'=>'required',
-            'phone' => 'min:11|max:11|required'
+            'phone' => 'min:11|max:11|required',
+            'group' => 'required|min:5|max:5'
         ];
     }
 }

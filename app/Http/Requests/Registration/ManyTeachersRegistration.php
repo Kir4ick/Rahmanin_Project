@@ -30,7 +30,9 @@ class ManyTeachersRegistration extends ApiRequest
             'teachers.*.middle_name' => 'min:2|max:40|required',
             'teachers.*.last_name' => 'min:2|max:40|required',
             'teachers.*.phone' => 'min:11|max:11|required',
-            'teachers.*.password' =>'min:8|required'
+            'teachers.*.password' =>'min:8|required',
+            'teachers.*.lessons' =>'array|required',
+            'teachers.*.lessons.*.name' =>'min:2|required',
         ];
     }
 }

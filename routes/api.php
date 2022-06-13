@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\User\EmailAndPasswordResetController;
+use App\Http\Controllers\RateController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,24 +26,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::put('/email/reset', [EmailAndPasswordResetController::class, 'emailReset']);
 Route::put('/password/reset', [EmailAndPasswordResetController::class, 'passReset']);
 
-Route::group([], function (){
-    Route::get('/groups', [GroupController::class , 'getGroups']);
-    Route::get('/group/{name}',[GroupController::class, 'getGroupByName']);
-    Route::get('/group/{id}', [GroupController::class, 'getGroup']);
-    Route::post('/new/group', [GroupController::class, 'newGroup']);
-    Route::put('/group/{id}', [GroupController::class, 'putGroup']);
-    Route::post('/excel/groups', [GroupController::class, 'excelImportGroups']);
-    Route::get('/students/group/{id}', [GroupController::class, 'getStudentsByGroup']);
-    Route::delete('/group/{id}' , [GroupController::class, 'deleteGroup']);
 
-    Route::get('/lessons', [LessonController::class, 'getLesons']);
-    Route::get('/lesson/{id}', [LessonController::class, 'getLesson']);
-    Route::get('/lesson/{name}', [LessonController::class, 'getLessonByName']);
-    Route::put('/lesson/{id}', [LessonController::class, 'putLesson']);
-    Route::post('/new/lesson', [LessonController::class, 'newLesson']);
-    Route::post('/excel/lesson', [LessonController::class, 'importExcelLessons']);
-    Route::get('/teacher/lesson/{id}' , [LessonController::class, 'getTeachersByLessons']);
-});
 
 //'middleware' => 'role:admin'
 //'middleware' => 'auth:sanctum'
@@ -69,7 +53,30 @@ Route::group([], function (){
     Route::get('/parents/by-student/{id}', [GetDataUserController::class, 'getParentsByStudent']);
     Route::get('/teacher/{id}', [GetDataUserController::class, 'getTeacher']);
     Route::get('/teachers/{offset}', [GetDataUserController::class, 'getTeachersById']);
+
+    Route::group([], function (){
+        Route::get('/groups', [GroupController::class , 'getGroups']);
+        Route::get('/group/{name}',[GroupController::class, 'getGroupByName']);
+        Route::get('/group/{id}', [GroupController::class, 'getGroup']);
+        Route::post('/new/group', [GroupController::class, 'newGroup']);
+        Route::put('/group/{id}', [GroupController::class, 'putGroup']);
+        Route::post('/excel/groups', [GroupController::class, 'excelImportGroups']);
+        Route::get('/students/group/{id}', [GroupController::class, 'getStudentsByGroup']);
+        Route::delete('/group/{id}' , [GroupController::class, 'deleteGroup']);
+
+        Route::get('/lessons', [LessonController::class, 'getLesons']);
+        Route::get('/lesson/{id}', [LessonController::class, 'getLesson']);
+        Route::get('/lesson/{name}', [LessonController::class, 'getLessonByName']);
+        Route::put('/lesson/{id}', [LessonController::class, 'putLesson']);
+        Route::post('/new/lesson', [LessonController::class, 'newLesson']);
+        Route::post('/excel/lesson', [LessonController::class, 'importExcelLessons']);
+        Route::get('/teacher/lesson/{id}' , [LessonController::class, 'getTeachersByLessons']);
+        Route::delete('/lesson/{id}', [LessonController::class, 'deleteLesson']);
+    });
     //Изменение данных пользователей
 
 });
+
+Route::get('/rate/{group}/{lesson}/{date}', [RateController::class, 'getJournal']);
+Route::get('/rate/{lesson}/{rate}', [RateController::class, 'getStudentsByRateAndLesson']);
 

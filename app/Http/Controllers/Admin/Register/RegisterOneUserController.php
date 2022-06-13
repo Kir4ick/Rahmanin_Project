@@ -26,7 +26,7 @@ class RegisterOneUserController extends UserService
 
         $user = $this->userRegister($student, 'student');
 
-        $group_id = Group::where('name',$student['group_name'])->first()->id;
+        $group_id = Group::where('name',$student['group'])->first()->id;
 
         Student::create([
             'user_id' => $user['id'],

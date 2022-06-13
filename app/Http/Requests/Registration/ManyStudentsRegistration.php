@@ -30,7 +30,8 @@ class ManyStudentsRegistration extends FormRequest
             'students.*.last_name' => 'min:2|max:40|required',
             'students.*.phone' => 'min:11|max:11|required',
             'students.*.password' =>'min:8|required',
-            'students.*.student_cart' => 'min:4|max:4|required'
+            'students.*.student_cart' => 'min:4|max:4|required',
+            'group' => 'required'
         ];
     }
 }

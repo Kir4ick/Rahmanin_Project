@@ -2,7 +2,10 @@
 
 namespace App\Models\Users;
 
+use App\Models\Arrear;
+use App\Models\Attestation;
 use App\Models\Lesson;
+use App\Models\Rate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,5 +26,17 @@ class Teacher extends Model
 
     public function lessons(){
         return $this->belongsToMany(Lesson::class, 'lessons_teachers' , 'id_teacher' , 'id_lesson');
+    }
+
+    public function arrear(){
+        return $this->hasMany(Arrear::class, 'id_teacher', 'id');
+    }
+
+    public function attestation(){
+        return $this->hasMany(Attestation::class, 'id_teacher', 'id');
+    }
+
+    public function rate(){
+        return $this->hasMany(Rate::class, 'id_teacher', 'id');
     }
 }

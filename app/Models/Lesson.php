@@ -20,4 +20,16 @@ class Lesson extends Model
     public function teachers(){
         return $this->belongsToMany(Teacher::class, 'lessons_teachers' , 'id_lesson' , 'id_teacher');
     }
+
+    public function arrear(){
+        return $this->hasMany(Arrear::class, 'id_lesson', 'id');
+    }
+
+    public function attestation(){
+        return $this->hasMany(Attestation::class, 'id_lesson', 'id');
+    }
+
+    public function rate(){
+        return $this->hasMany(Rate::class, 'id_lesson', 'id');
+    }
 }

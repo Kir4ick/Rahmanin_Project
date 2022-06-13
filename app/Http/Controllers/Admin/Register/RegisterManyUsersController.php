@@ -20,11 +20,12 @@ class RegisterManyUsersController extends UserService
 {
     public function manyStudentsRegister(ManyStudentsRegistration $request){
         $students = $request->all()['students'];
+        $group = $students['group'];
         foreach ($students as $student){
 
             $user = $this->userRegister($student, 'student');
 
-            $group_id = Group::where('name',$student['group_name'])->first()->id;
+            $group_id = Group::where('name',$group)->first()->id;
 
             Student::create([
                 'user_id' => $user['id'],

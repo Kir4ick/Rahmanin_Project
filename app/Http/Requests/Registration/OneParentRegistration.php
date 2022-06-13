@@ -26,6 +26,7 @@ class OneParentRegistration extends ApiRequest
     {
         return [
             'name'=>'min:1|max:30|required',
+            'login' => 'required',
             'middle_name'=>'min:1|max:30|required',
             'last_name'=>'min:1|max:30|required',
             'password' => 'min:8|required',
