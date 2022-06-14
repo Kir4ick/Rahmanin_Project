@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RateRequest extends ApiRequest
+class TimeTableRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,13 @@ class RateRequest extends ApiRequest
     public function rules()
     {
         return [
-            'rate' => 'regex:/н{1}|[2-5]{1}/',
-            'lesson' => 'min:2|required',
-            'id_student' => 'required'
+            'begin' => 'required|regex:/[0-24]{2}:[0-60]{2}/',
+            'day' => 'required|min:4',
+            'group' => 'required|regex:/[А-Я]{2}-[1-5]{2}/',
+            'lesson' => 'required|min:2',
+            'class' => 'required|min:2',
+            'even' => 'required',
+            'teacher' => 'required'
         ];
     }
 }

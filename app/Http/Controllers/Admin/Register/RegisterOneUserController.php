@@ -64,12 +64,12 @@ class RegisterOneUserController extends UserService
         //Регистрация пользователя
         $user = $this->userRegister($teacher, 'teacher');
 
-        Teacher::create([
+        $teacher = Teacher::create([
             'user_id' => $user['id'],
         ]);
 
         foreach ($teacher['lessons'] as $lesson){
-            $teacher->lessons()->attach(Lesson::where('code', $lesson)->first());
+            $teacher->lessons()->attach(Lesson::where('name', $lesson['name'])->first());
             $teacher->save();
         }
 

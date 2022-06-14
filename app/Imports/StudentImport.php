@@ -28,7 +28,6 @@ class StudentImport implements ToCollection
                 'login' => $student[3],
                 'phone' => $student[4],
                 'password' => Hash::make($student[5]),
-                'group_id' => $group_id
             ]);
 
             $user->roles()->attach(Role::where('slug', 'student')->first());
@@ -36,7 +35,8 @@ class StudentImport implements ToCollection
 
             Student::create([
                 'user_id' => $user['id'],
-                'student_cart' => $student[6],
+                'student_cart' => $student[7],
+                'group_id' => $group_id
             ]);
         }
     }

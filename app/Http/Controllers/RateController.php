@@ -8,10 +8,12 @@ use App\Http\Resources\StudentResource;
 use App\Models\Group;
 use App\Models\Lesson;
 use App\Models\Rate;
+use Illuminate\Http\Request;
 
 class RateController extends Controller
 {
-    public function rate(RateRequest $request){
+    public function rateNew(RateRequest $request){
+        dd(auth('sanctum')->user());
         $id_lesson = Lesson::where('name', $request->lesson)->first()->id;
         Rate::create([
             'rate' => $request->rate,
@@ -37,10 +39,9 @@ class RateController extends Controller
     }
 
     public function putRate($id, Request $request){
-
         $rate = Rate::find($id);
         $rate->rate = $request->rate;
-        $rate->save;
+        $rate->save();
         return response()->json(['message' => 'Оценка изменена']);
     }
 

@@ -24,7 +24,8 @@ class StudentResource extends JsonResource
             'email' => $user->email,
             'created' => $user->created_at,
             'update' => $user->updated_at,
-            'student_cart' => $this->student_cart
+            'student_cart' => $this->student_cart,
+            'group' => $this->group
         ];
     }
 }

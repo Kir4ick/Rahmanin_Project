@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\LessonController;
 use App\Http\Controllers\User\EmailAndPasswordResetController;
 use App\Http\Controllers\RateController;
+use App\Http\Controllers\AttestationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,8 +27,16 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::put('/email/reset', [EmailAndPasswordResetController::class, 'emailReset']);
 Route::put('/password/reset', [EmailAndPasswordResetController::class, 'passReset']);
 
+Route::get('/rate/{group}/{lesson}/{date}', [RateController::class, 'getJournal']);
+Route::get('/rate/{lesson}/{rate}', [RateController::class, 'getStudentsByRateAndLesson']);
+Route::post('/rate', [RateController::class, 'rateNew']);
+Route::put('/rate/{id}', [RateController::class, 'putRate']);
+Route::delete('/rate/{id}', [RateController::class, 'delRate']);
+Route::post('/journal', [RateController::class, 'rateJournal']);
 
-
+Route::post('/attestation',[AttestationController::class, 'attestation']);
+Route::post('/attestation/journal', [AttestationController::class, 'attestationJournal']);
+Route::get('/attestations', [AttestationController::class, 'attestations']);
 //'middleware' => 'role:admin'
 //'middleware' => 'auth:sanctum'
 Route::group([], function (){
@@ -77,6 +86,5 @@ Route::group([], function (){
 
 });
 
-Route::get('/rate/{group}/{lesson}/{date}', [RateController::class, 'getJournal']);
-Route::get('/rate/{lesson}/{rate}', [RateController::class, 'getStudentsByRateAndLesson']);
+
 

@@ -13,16 +13,16 @@ class RegisterExcelUsersController extends Controller
 {
     public function excelRegisterStudents(ExcelRequest $request){
         Excel::import(new StudentImport, $request->file('file'));
-        return response()->json(['message' => 'New students created'], 200);
+        return response()->json(['message' => 'Новые студенты созданы'], 200);
     }
 
     public function excelRegisterParents(ExcelRequest $request){
         Excel::import(new ParentImport(), $request->file('file'));
-        return response()->json(['message' => 'New parents created'], 200);
+        return response()->json(['message' => 'Новые родители созданы'], 200);
     }
 
     public function excelRegisterTeachers(ExcelRequest $request){
         Excel::import(new TeacherImport(), $request->file('file'));
-        return response()->json(['message' => 'New parents created'], 200);
+        return response()->json(['message' => 'Новые учителя созданы'], 200);
     }
 }

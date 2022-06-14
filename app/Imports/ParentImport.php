@@ -24,8 +24,8 @@ class ParentImport implements ToCollection
                 'middle_name' => $parent[1],
                 'last_name' => $parent[2],
                 'login' => $parent[3],
-                'phone' => $parent[5],
-                'password' => Hash::make($parent[4])
+                'password' => Hash::make($parent[4]),
+                'phone' => $parent[5]
             ]);
 
             $user->roles()->attach(Role::where('slug', 'parent')->first());

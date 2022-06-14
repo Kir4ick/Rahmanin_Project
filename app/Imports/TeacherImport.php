@@ -25,8 +25,8 @@ class TeacherImport implements ToCollection
                 'middle_name' => $teacher[1],
                 'last_name' => $teacher[2],
                 'login' => $teacher[3],
-                'phone' => $teacher[5],
-                'password' => Hash::make($teacher[4])
+                'password' => Hash::make($teacher[4]),
+                'phone' => $teacher[5]
             ]);
 
             $user->roles()->attach(Role::where('slug', 'teacher')->first());
