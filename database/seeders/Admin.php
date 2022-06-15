@@ -30,7 +30,7 @@ class Admin extends Seeder
             'role_id' => 5
         ]);
         DB::table('admin')->insert([
-            'user_id' => $user->id
+            'user_id' => 1
         ]);
     }
 }

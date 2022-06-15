@@ -29,7 +29,6 @@ class TimeTableImport implements ToCollection
             $day = Days::where('day', $row[1])->first()->id;
             $class = Classes::where('number', $row[5])->first()->id;
             $teacher = User::where('middle_name', $row[6])->first()->teacher;
-
             TimeTable::create([
                 'id_day' => $day,
                 'id_calls' => $calls,

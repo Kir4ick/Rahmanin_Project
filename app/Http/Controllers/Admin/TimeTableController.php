@@ -85,4 +85,29 @@ class TimeTableController extends Controller
         $id = auth('sanctum')->user()->teacher;
         return TimeTableResource::collection(TimeTable::where('id_teacher', $id));
     }
+
+    public function getTimeTable(){
+        return TimeTableResource::collection(TimeTable::all());
+    }
+
+    public function putTimeTable($id, TimeTableRequest $request){
+        $time_table = TimeTable::find($id);
+        $group = Group::where('name', $request->group)->id;
+        $lesson = Lesson::where('name', $request->lesson)->id;
+        $calls = Calls::where('begin', $request->begin)->id;
+        $even = Parity::where('even', $request->even)->id;
+        $day = Days::where('day', $request->day)->id;
+        $class = Classes::where('class', $request->class)->id;
+        $teacher = Teacher::where('middle_name', $request->teacher)->id;
+        $time_table->update([
+            'id_day' => $day,
+            'id_calls' => $calls,
+            'id_class' => $class,
+            'id_even' => $even,
+            'id_lesson' => $lesson,
+            'id_group' => $group,
+            'id_teacher' => $teacher
+        ]);
+        return response()->json(['message'=>'Ячейка расписания обновлена']);
+    }
 }

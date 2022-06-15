@@ -39,7 +39,7 @@ class AuthController extends Controller
             case 'teacher':
                     return new TeacherResource($user->teacher);
             case 'admin':
-                    return new AdminResource($user);
+                    return new AdminResource($user->admin);
             default:
                     return response()->json([
                         'message' => 'Ты что такое вообще?'

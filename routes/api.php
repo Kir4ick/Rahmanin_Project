@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth:sanctum'], function (){
         Route::get('/students/{offset}', [GetDataUserController::class, 'getStudents']);
         Route::get('/teachers/{offset}', [GetDataUserController::class, 'getTeachersById']);
         Route::get('/parents/{offset}', [GetDataUserController::class, 'getParents']);
+        Route::get('/timetable', [TimeTableController::class, 'getTimeTable']);
     });
     Route::group(['middleware' => 'role:parent'],function (){
         Route::get('/students/by-parent/{id}', [GetDataUserController::class, 'getStudentsByParents']);
@@ -84,7 +85,7 @@ Route::group(['middleware' => 'auth:sanctum'], function (){
     Route::group(['middleware' => 'role:student'], function (){
         //ВЫвод оценок
         Route::get('/my/rate', [RateController::class, 'getRateByStudents']);
-        //ВЫвод расписания
+        //Вывод расписания
         Route::get('/timetable/student', [TimeTableController::class, 'getByStudentTimeTable']);
         //Вывод аттестации
         Route::get('/attestations', [AttestationController::class, 'attestations']);
