@@ -26,13 +26,13 @@ class OneParentRegistration extends ApiRequest
     {
         return [
             'name'=>'min:1|max:30|required',
-            'login' => 'required',
+            'login' => 'required|unique:login',
             'middle_name'=>'min:1|max:30|required',
             'last_name'=>'min:1|max:30|required',
             'password' => 'min:8|required',
             'students' => 'array|required',
             'students.*.student_cart'=>'required',
-            'phone' => 'min:11|max:11|required'
+            'phone' => 'min:11|max:11|required|unique:phone'
         ];
     }
 }
