@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ExcelRequest;
 use App\Http\Requests\GroupTimeTableRequest;
 use App\Http\Requests\TimeTableRequest;
+use App\Http\Resources\TimeTableResource;
 use App\Imports\ParentImport;
 use App\Imports\TimeTableImport;
 use App\Models\Group;
@@ -66,5 +67,22 @@ class TimeTableController extends Controller
     public function timeTableExcel(ExcelRequest $request){
         Excel::import(new TimeTableImport(), $request->file('file'));
         return response()->json(['message' => 'Расписание импортировано успешно'], 200);
+    }
+
+    public function newCalsses(Request $request){
+        Classes::create(['number' => $request->number]);
+        return response()->json(['message' => 'Кабинет добавлен в базу данных']);
+    }
+
+    public function getByStudentTimeTable(){
+
+        $student = auth('sanctum')->user()->student;
+        $id = $student->group->id;
+        return TimeTableResource::collection(TimeTable::where('id_group', $id)->get());
+    }
+
+    public function getByTeacherTimeTable(){
+        $id = auth('sanctum')->user()->teacher;
+        return TimeTableResource::collection(TimeTable::where('id_teacher', $id));
     }
 }

@@ -16,9 +16,9 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
-        if (!auth()->user()->hasRole($role)) {
+        if (!auth('sanctum')->user()->hasRole($role)) {
             return response()->json([
-                'message' => 'Access denied'
+                'message' => 'Доступ запрещён'
             ], 403);
         }
         return $next($request);

@@ -13,29 +13,31 @@ class TimeTable extends Model
     use HasFactory;
 
     protected $table = 'timetable';
+    public $timestamps = false;
+
     protected $fillable = [
       'id_day',	'id_calls',	'id_class',	'id_even',	'id_lesson',	'id_group',	'id_teacher'
     ];
 
     public function day(){
-        return $this->hasOne(Days::class, 'id_day', 'id');
+        return $this->hasOne(Days::class, 'id', 'id_day');
     }
     public function call(){
-        return $this->hasOne(Calls::class, 'id_calls', 'id');
+        return $this->hasOne(Calls::class, 'id', 'id_calls');
     }
     public function class(){
-        return $this->hasOne(Classes::class, 'id_class', 'id');
+        return $this->hasOne(Classes::class, 'id', 'id_class');
     }
     public function even(){
-        return $this->hasOne(Parity::class, 'id_even', 'id');
+        return $this->hasOne(Parity::class, 'id', 'id_even');
     }
     public function lesson(){
-        return $this->hasOne(Lesson::class, 'id_lesson', 'id');
+        return $this->hasOne(Lesson::class, 'id', 'id_lesson');
     }
     public function group(){
-        return $this->hasOne(Group::class, 'id_group', 'id');
+        return $this->hasOne(Group::class, 'id', 'id_group');
     }
     public function teacher(){
-        return $this->hasOne(Teacher::class, 'id_teacher', 'id');
+        return $this->hasOne(Teacher::class, 'id', 'id_teacher');
     }
 }

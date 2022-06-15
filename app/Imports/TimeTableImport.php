@@ -10,6 +10,7 @@ use App\Models\Timetable\Days;
 use App\Models\Timetable\Parity;
 use App\Models\Timetable\TimeTable;
 use App\Models\Users\Teacher;
+use App\Models\Users\User;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
@@ -21,13 +22,14 @@ class TimeTableImport implements ToCollection
     public function collection(Collection $collection)
     {
         foreach ($collection as $row){
-            $group = Group::where('name', $row[0])->id;
-            $lesson = Lesson::where('name', $row[2])->id;
-            $calls = Calls::where('begin', $row[3])->id;
-            $even = Parity::where('even', $row[4])->id;
-            $day = Days::where('day', $row[1])->id;
-            $class = Classes::where('class', $row[6])->id;
-            $teacher = Teacher::where('middle_name', $row[7])->id;
+            $group = Group::where('name', $row[0])->first()->id;
+            $lesson = Lesson::where('name', $row[2])->first()->id;
+            $calls = Calls::where('begin', $row[3])->first()->id;
+            $even = Parity::where('even', $row[4])->first()->id;
+            $day = Days::where('day', $row[1])->first()->id;
+            $class = Classes::where('number', $row[5])->first()->id;
+            $teacher = User::where('middle_name', $row[6])->first()->teacher;
+
             TimeTable::create([
                 'id_day' => $day,
                 'id_calls' => $calls,
@@ -35,7 +37,7 @@ class TimeTableImport implements ToCollection
                 'id_even' => $even,
                 'id_lesson' => $lesson,
                 'id_group' => $group,
-                'id_teacher' => $teacher
+                'id_teacher' => $teacher->id
             ]);
         }
     }

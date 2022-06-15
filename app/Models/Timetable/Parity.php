@@ -10,7 +10,7 @@ class Parity extends Model
     use HasFactory;
 
     protected $table = 'parity';
-
+    public $timestamps = false;
     protected $fillable = [
       'even'
     ];

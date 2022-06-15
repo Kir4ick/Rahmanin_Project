@@ -25,4 +25,6 @@ class Group extends Model
     public function rates(){
         return $this->hasManyThrough(Rate::class, Student::class);
     }
+
+
 }

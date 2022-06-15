@@ -53,7 +53,6 @@ class RateController extends Controller
 
     public function getStudentsByRateAndLesson($lesson, $rate){
         $id_lesson = Lesson::where('name' ,$lesson)->first()->id;
-
         return StudentResource::collection(Rate::where('rate', $rate)->where('id_lesson', $id_lesson)->get()->student);
     }
 
@@ -61,5 +60,9 @@ class RateController extends Controller
         $group = Group::where('name', $group)->first();
         $id_lesson = Lesson::where('name' ,$lesson)->first()->id;
         return RateResource::collection($group->rates->where('id_lesson', $id_lesson)->where('created_at', $date));
+    }
+
+    public function getRateByStudents(){
+        return RateResource::collection(auth('sanctum')->user()->student->rate->get());
     }
 }

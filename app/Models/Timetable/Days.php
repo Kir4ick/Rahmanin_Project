@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Days extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = 'days';
     protected $fillable = [
       'day'

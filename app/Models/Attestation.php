@@ -12,7 +12,7 @@ class Attestation extends Model
     use HasFactory;
 
     protected $table = 'attestation';
-
+    public $timestamps = false;
     protected $fillable = [
         'semester','rate', 'id_lesson', 'id_student', 'id_teacher'
     ];

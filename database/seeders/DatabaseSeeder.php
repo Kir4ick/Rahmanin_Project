@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             Roles::class,
             calls::class,
             parity::class,
-            days::class
+            days::class,
+            Admin::class
         ]);
     }
 }

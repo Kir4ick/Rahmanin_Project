@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Calls extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $table = 'calls';
     protected $fillable = [
       'begin', 'end'

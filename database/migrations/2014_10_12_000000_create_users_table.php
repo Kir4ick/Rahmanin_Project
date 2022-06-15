@@ -41,19 +41,19 @@ return new class extends Migration
         Schema::create('parents', function (Blueprint $table){
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('id')->on('users')->references('id')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('user_id')->on('users')->references('id')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
 
         Schema::create('teachers', function (Blueprint $table){
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('id')->on('users')->references('id')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('user_id')->on('users')->references('id')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
 
         Schema::create('admin', function (Blueprint $table){
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('id')->on('users')->references('id')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('user_id')->on('users')->references('id')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }
 

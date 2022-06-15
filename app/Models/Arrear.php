@@ -13,7 +13,7 @@ class Arrear extends Model
     use HasFactory;
 
     protected $table = 'arrears';
-
+    public $timestamps = false;
     protected $fillable = [
         'semester', 'closed', 'id_lesson', 'id_student', 'id_teacher'
     ];
